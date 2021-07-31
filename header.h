@@ -87,13 +87,17 @@ typedef struct	s_cmd
 /*		thread_start.c */
 bool thread_start(t_cmd *cmd);
 
-/*		thread.c
+/*		thread.c */
 bool thread_head(t_cmd *cmd, t_node *phil, size_t *time_a);
 
 /*		thread_utils.c */
 bool get_time(size_t *t);
 bool announcer(t_node *phil, int act);
 bool alarm_clock(t_cmd *cmd, size_t time);
+
+/*		inits.c */
+
+void inits(t_cmd *cmd);
 
 /*		phils.c */
 bool spawn_philo(t_cmd *cmd);
