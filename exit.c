@@ -2,7 +2,7 @@
 
 /* prints error */
 
-static void errors(int n)
+static void	errors(int n)
 {
 	if (n == bad_arg)
 		write(2, "bad arguments\n", 14);
@@ -28,11 +28,11 @@ static void errors(int n)
 
 /* frees all that was alloceted befor exit */
 
-void free_exit(t_cmd *cmd)
+void	free_exit(t_cmd *cmd)
 {
-	t_node *temp;
-	int ct;
-	int i;
+	t_node	*temp;
+	int		ct;
+	int		i;
 
 	ct = 0;
 	while (cmd->philos.head)
@@ -54,10 +54,10 @@ void free_exit(t_cmd *cmd)
 
 /* detaches threads and desroys mutex before exit */
 
-void thread_exit(t_cmd *cmd)
+void	thread_exit(t_cmd *cmd)
 {
-	t_node *temp;
-	int 	ct;
+	t_node	*temp;
+	int		ct;
 
 	pthread_mutex_destroy(&cmd->sync);
 	pthread_mutex_destroy(&cmd->flag);
@@ -77,15 +77,14 @@ void thread_exit(t_cmd *cmd)
 
 /* calls another err func when error occured */
 
-int err_exit(t_cmd *cmd, int n)
+int	err_exit(t_cmd *cmd, int n)
 {
-
 	cmd->error = n;
 	errors(cmd->error);
 	if (n == bad_malloc || n == bad_arg)
 	{
 		free_exit(cmd);
-		return(-1);
+		return (-1);
 	}
 	thread_exit(cmd);
 	free_exit(cmd);
@@ -94,9 +93,9 @@ int err_exit(t_cmd *cmd, int n)
 
 /* sets error to valid flag and unlocks all mutexses */
 
-bool set_error(t_cmd *cmd, int n)
+bool	set_error(t_cmd *cmd, int n)
 {
-	t_node *node;
+	t_node	*node;
 
 	cmd->error = n;
 	node = cmd->philos.head;

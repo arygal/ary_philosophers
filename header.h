@@ -22,29 +22,18 @@ typedef enum e_psa
 typedef enum e_err
 {
 	bad_arg,
-	/* bad arguments */
 	bad_malloc,
-	/* malloc ret NULL */
 	bad_time,
-	/* bad gettimeofday */
 	bad_create,
-	/* bad pthread create */
 	bad_join,
-	/* bad pthread join */
 	bad_init,
-	/* bad mutex init */
 	bad_sleep,
-	/* bad usleep */
 	bad_detach,
-	/* bad detach */
 	bad_lock,
-	/* bad mutex lock */
 	bad_unlock
-	/* bad mutex unlock */
 }t_err;
 
-
-typedef struct	s_node
+typedef struct s_node
 {
 	int					name;
 	int					ticket;
@@ -60,19 +49,19 @@ typedef struct	s_node
 	struct s_node		*next;
 }t_node;
 
-typedef struct	s_list
+typedef struct s_list
 {
 	t_node	*head;
 	t_node	*tail;
 }t_list;
 
-typedef struct	s_cmd
+typedef struct s_cmd
 {
 	t_list			philos;
 	pthread_mutex_t	**forks;
 	pthread_t		master;
 	pthread_mutex_t	sync;
-	pthread_mutex_t flag;
+	pthread_mutex_t	flag;
 	bool			queue;
 	int				guests;
 	int				death;
@@ -85,28 +74,28 @@ typedef struct	s_cmd
 }t_cmd;
 
 /*		thread_start.c */
-bool thread_start(t_cmd *cmd);
+bool	thread_start(t_cmd *cmd);
 
 /*		thread.c */
-bool thread_head(t_cmd *cmd, t_node *phil, size_t *time_a);
+bool	thread_head(t_cmd *cmd, t_node *phil, size_t *time_a);
 
 /*		thread_utils.c */
-bool get_time(size_t *t);
-bool announcer(t_node *phil, int act);
-bool alarm_clock(t_cmd *cmd, size_t time);
+bool	get_time(size_t *t);
+bool	announcer(t_node *phil, int act);
+bool	alarm_clock(t_cmd *cmd, size_t time);
 
 /*		inits.c */
 
-void inits(t_cmd *cmd);
+void	inits(t_cmd *cmd);
 
 /*		phils.c */
-bool spawn_philo(t_cmd *cmd);
+bool	spawn_philo(t_cmd *cmd);
 
 /*		exit.c */
-bool set_error(t_cmd *cmd, int n);
-void thread_exit(t_cmd *cmd);
+bool	set_error(t_cmd *cmd, int n);
+void	thread_exit(t_cmd *cmd);
 int		err_exit(t_cmd *cmd, int n);
-void free_exit(t_cmd *cmd);
+void	free_exit(t_cmd *cmd);
 
 /*		arg_proc.c */
 bool	arg_proc(t_cmd *cmd, int argc, char **argv);

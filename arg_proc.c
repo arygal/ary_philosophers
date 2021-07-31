@@ -2,10 +2,10 @@
 
 /* ASCII TO POSITIVE INTEGER ALLSO IT CHECKS IF CHAR IS NOT NUMBER*/
 
-static bool atoi_p(const char *str, int *i)
+static bool	atoi_p(const char *str, int *i)
 {
-	int ct;
-	long ret;
+	int		ct;
+	long	ret;
 
 	ct = -1;
 	ret = 0;
@@ -21,11 +21,11 @@ static bool atoi_p(const char *str, int *i)
 	return (true);
 }
 
-/* turn str *argv to int arguments and stores it in cmd */ 
+/* turn str *argv to int arguments and stores it in cmd */
 
-bool arg_proc(t_cmd *cmd, int argc, char **argv)
+bool	arg_proc(t_cmd *cmd, int argc, char **argv)
 {
-	int val;
+	int	val;
 
 	if (argc != 6 && argc != 5)
 		return (false);

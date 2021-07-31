@@ -2,9 +2,9 @@
 
 /* makes node and puts name and mutexses in node */
 
-static t_node *make_node(t_cmd *cmd, int name)
+static t_node	*make_node(t_cmd *cmd, int name)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = malloc(sizeof(t_node));
 	if (!node)
@@ -23,10 +23,10 @@ static t_node *make_node(t_cmd *cmd, int name)
 
 /* prepares mutexses for nodes */
 
-static bool serve_forks(t_cmd *cmd)
+static bool	serve_forks(t_cmd *cmd)
 {
-	int len;
-	int ct;
+	int	len;
+	int	ct;
 
 	len = cmd->guests;
 	cmd->forks = malloc(sizeof(pthread_mutex_t *) * len);
@@ -46,9 +46,9 @@ static bool serve_forks(t_cmd *cmd)
 
 /* preperes and sets mutexses for queue */
 
-static bool init_queue(t_cmd *cmd)
+static bool	init_queue(t_cmd *cmd)
 {
-	t_node *temp;
+	t_node	*temp;
 
 	temp = cmd->philos.head;
 	while (temp)
@@ -67,10 +67,11 @@ static bool init_queue(t_cmd *cmd)
 
 /* puts node in right place */
 
-bool spawn_philo(t_cmd *cmd)
+bool	spawn_philo(t_cmd *cmd)
 {
-	t_node *newnode;
-	int ct;
+	t_node	*newnode;
+	int		ct;
+
 	if (!(serve_forks(cmd)))
 		return (false);
 	ct = -1;

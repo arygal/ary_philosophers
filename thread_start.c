@@ -2,7 +2,7 @@
 
 /* unlocks mutexses whten thread is closing */
 
-static bool unlock_forks(t_node *phil)
+static bool	unlock_forks(t_node *phil)
 {
 	if (phil->r_mtx)
 	{
@@ -26,10 +26,10 @@ static bool unlock_forks(t_node *phil)
 
 /* basic thread with philo "SIMULATION" */
 
-static void *thread(void *ptr)
+static void	*thread(void *ptr)
 {
-	t_node *phil;
-	size_t time_a;
+	t_node	*phil;
+	size_t	time_a;
 
 	phil = (t_node *)ptr;
 	if (pthread_mutex_lock(phil->queue))
@@ -44,7 +44,7 @@ static void *thread(void *ptr)
 	phil->life = phil->start + phil->cmd->death;
 	while (phil->cmd->party)
 		if (!(thread_head(phil->cmd, phil, &time_a)))
-			break;
+			break ;
 	if (phil->ticket)
 		phil->cmd->party = false;
 	unlock_forks(phil);
@@ -53,11 +53,11 @@ static void *thread(void *ptr)
 
 /* master thread - it terminate threads if they live longer then they should */
 
-static void *death(void *ptr)
+static void	*death(void *ptr)
 {
-	t_cmd *cmd;
-	t_node *temp;
-	size_t time;
+	t_cmd	*cmd;
+	t_node	*temp;
+	size_t	time;
 
 	cmd = (t_cmd *)ptr;
 	if (pthread_mutex_lock(&cmd->flag))
@@ -84,10 +84,10 @@ static void *death(void *ptr)
 
 /* releses threads in queue order then spawn master thread */
 
-static bool death_start(t_cmd *cmd)
+static bool	death_start(t_cmd *cmd)
 {
-	void *ptr;
-	t_node *temp;
+	void	*ptr;
+	t_node	*temp;
 
 	temp = cmd->philos.head;
 	while (temp)
@@ -115,10 +115,10 @@ static bool death_start(t_cmd *cmd)
 
 /* inits  lst 2 mutexses for sync and queue than start spwawn of threads */
 
-bool thread_start(t_cmd *cmd)
+bool	thread_start(t_cmd *cmd)
 {
-	void *ptr;
-	t_node *temp;
+	void	*ptr;
+	t_node	*temp;
 
 	if (pthread_mutex_init(&cmd->sync, NULL))
 		return (set_error(cmd, bad_init));

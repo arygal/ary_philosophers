@@ -2,7 +2,7 @@
 
 /* last part -> phil sleeps until next cycle */
 
-bool thread_tail(t_cmd *cmd, t_node *phil, size_t *time_a)
+bool	thread_tail(t_cmd *cmd, t_node *phil, size_t *time_a)
 {
 	if (!(announcer(phil, rest)))
 		return (false);
@@ -15,7 +15,7 @@ bool thread_tail(t_cmd *cmd, t_node *phil, size_t *time_a)
 
 /* second part -> phil eats and drops forcks(mutexses) */
 
-bool thread_body(t_cmd *cmd, t_node *phil, size_t *time_a)
+bool	thread_body(t_cmd *cmd, t_node *phil, size_t *time_a)
 {
 	if (phil->ticket != -1)
 		--phil->ticket;
@@ -41,7 +41,7 @@ bool thread_body(t_cmd *cmd, t_node *phil, size_t *time_a)
 
 /* first part -> phil tries to pick up forcks(mutexses) */
 
-bool thread_head(t_cmd *cmd, t_node *phil, size_t *time_a)
+bool	thread_head(t_cmd *cmd, t_node *phil, size_t *time_a)
 {
 	if (!cmd->party)
 		return (false);

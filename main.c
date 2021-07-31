@@ -1,9 +1,8 @@
-
 #include "header.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_cmd cmd;
+	t_cmd	cmd;
 
 	inits(&cmd);
 	if (!(arg_proc(&cmd, argc, argv)))

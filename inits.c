@@ -2,7 +2,7 @@
 
 /* inits just inits */
 
-void inits(t_cmd *cmd)
+void	inits(t_cmd *cmd)
 {
 	cmd->forks = NULL;
 	cmd->philos.head = NULL;
