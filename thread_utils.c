@@ -15,7 +15,7 @@ static void	print(t_node *phil, int *act, size_t *time)
 	else
 	{
 		phil->cmd->party = false;
-		printf("%lu %i died\n", time, phil->name);
+		printf("%lu %i died\n", *time, phil->name);
 	}
 }
 
